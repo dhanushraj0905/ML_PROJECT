@@ -3,7 +3,7 @@
 
 # Importing essential libraries
 import pandas as pd
-import pickle
+
 
 # Loading the dataset
 df = pd.read_csv('ipl.csv')
@@ -58,9 +58,41 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train,y_train)
 
-# Creating a pickle file for the classifier
-filename = 'first-innings-score-lr-model.pkl'
-pickle.dump(regressor, open(filename, 'wb'))
+r2score=regressor.score(X_test,y_test)
+print("Accuracy With Linear Regression= ",r2score)
+
+
+# Lasso Regression Model
+from sklearn.linear_model import Lasso
+lasso=Lasso()
+lasso.fit(X_train,y_train)
+
+l2score=lasso.score(X_train,y_train)
+print("Accuraccy With Lasso Regression= ",l2score)
+
+# Ridge Regression Model
+from sklearn.linear_model import Ridge
+ridge=Ridge()
+ridge.fit(X_train,y_train)
+
+r2score=ridge.score(X_train,y_train)
+print("Accuraccy  With Ridge Regression= ",r2score)
+
+
+# Ridge Regression Model
+from sklearn.linear_model import BayesianRidge
+bayes=BayesianRidge()
+bayes.fit(X_train,y_train)
+
+b2score=bayes.score(X_train,y_train)
+print("Accuraccy  With Bayes Linear Regression= ",b2score)
+
+
+print("\nTherefore LINEAR REGRESSION Is More Suitable To Use")
+
+
+
+
 
 
 
